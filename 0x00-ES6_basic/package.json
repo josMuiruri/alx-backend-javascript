@@ -1,0 +1,19 @@
+{
+	"name": "0x00-ES6_basic",
+	"version": "1.0.0",
+	"description": "0X00.ES6 Basics",
+	"main": "0-constants.js",
+	"script": {
+		"test": "jest"
+	},
+	"author": "joseph",
+	"licence": "ISC",
+	"devDependencies": {
+		"@babel/cli": "^7.14.5",
+		"@babel/core": "^7.14.6",
+		"@babel/preset-env": "^7.14.5",
+		"eslint": "^7.28.0",
+		"babel-jest": "^27.0.2",
+		"jest": "^27.0.4"
+	}
+}
