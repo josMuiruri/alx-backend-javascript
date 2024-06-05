@@ -18,4 +18,5 @@ function getListStudents() {
   ];
 }
 
-export default getListStudents;
+const students = getListStudents();
+console.log(students);
