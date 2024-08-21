@@ -1,9 +1,9 @@
-const fs = require('node:fs');
+const fs = require('fs');
 
-const countStudents = (path) => {
+const countStudents = (filename) => {
   try {
     // read file synchronously
-    const data = fs.readFileSync(path, 'utf-8');
+    const data = fs.readFileSync(filename, 'utf-8');
 
     // Split data into lines & filter out empty line
     const lines = data.split('\n').filter((line) => line.trim() !== '');
@@ -16,7 +16,7 @@ const countStudents = (path) => {
 
     // Process each line
     lines.forEach((line) => {
-      const [firstname, lastname, age, field] = line.split(',');
+      const [firstname, field] = line.split(',');
 
       // ensure the field exist in the object
       if (!studentsByField[field]) {
