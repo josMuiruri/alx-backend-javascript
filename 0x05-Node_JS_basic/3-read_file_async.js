@@ -1,7 +1,6 @@
-const { error } = require('console');
 const fs = require('fs');
 
-const countStudents = (fileName) => {
+function countStudents(fileName) {
   const students = {};
   const fields = {};
   let length = 0;
@@ -34,7 +33,7 @@ const countStudents = (fileName) => {
             console.log(
               `Number of students in ${key}: ${value}. List: ${students[
                 key
-              ].join(',')}`
+              ].join(', ')}`
             );
           }
         }
@@ -42,6 +41,6 @@ const countStudents = (fileName) => {
       }
     });
   });
-};
+}
 
 module.exports = countStudents;
