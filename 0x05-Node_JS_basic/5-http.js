@@ -1,13 +1,12 @@
-const fs = require('fs');
 const http = require('http');
-const url = require('url');
+const fs = require('fs');
 
 const countStudents = (fileName) => {
   const students = {};
   const fields = {};
   let length = 0;
   return new Promise((resolve, reject) => {
-    readFile(fileName, (err, data) => {
+    fs.readFile(fileName, (err, data) => {
       if (err) {
         reject(err);
       } else {
@@ -41,30 +40,27 @@ const countStudents = (fileName) => {
       }
     });
   });
-};
+}
 
 const app = http.createServer((req, res) => {
-  const pathName = req.url;
-
-  if (pathName === '/') {
-    res.writeHead(200, {
-      'content-length': 'text/plain',
-    });
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  if (req.url === '/') {
     res.end('Hello Holberton School!');
-  } else if (pathName === '/students') {
-    res.end('This is the list of our students\n');
+  }
+  if (req.url === '/students') {
+    res.write('This is the list of our students\n');
     countStudents(process.argv[2].toString()).then((output) => {
       const outString = output.slice(0, -1);
       res.end(outString);
+    }).catch(() => {
+      res.statusCode = 404;
+      res.end('Cannot load the database');
     });
-  } else {
-    res.writeHead(404, {
-      'Content-type': 'text/html',
-    });
-    res.end('<h1>Page not found!</h1>');
   }
 });
 
-app.listen(1245, '127.0.0.1', () => {});
+app.listen(1245, '127.0.0.1', () => {
+});
 
 module.exports = app;
