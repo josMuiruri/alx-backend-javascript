@@ -5,7 +5,7 @@ const fs = require('fs');
 const app = express();
 const port = 1245;
 
-function countStudents(fileName) {
+const countStudents = (fileName) => {
   const students = {};
   const fields = {};
   let length = 0;
@@ -44,7 +44,7 @@ function countStudents(fileName) {
       }
     });
   });
-}
+};
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello Holberton School!');
