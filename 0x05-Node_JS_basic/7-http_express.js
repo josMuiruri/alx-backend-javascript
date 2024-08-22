@@ -5,7 +5,7 @@ const fs = require('fs');
 const app = express();
 const port = 1245;
 
-const countStudents = (fileName) => {
+function countStudents(fileName) {
   const students = {};
   const fields = {};
   let length = 0;
@@ -44,16 +44,17 @@ const countStudents = (fileName) => {
       }
     });
   });
-};
+}
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello Holberton School!');
 });
-
-app.get('/student', (req, res) => {
+app.get('/students', (req, res) => {
   countStudents(process.argv[2].toString())
     .then((output) => {
-      res.send(['This is the list of our students', output].join('\n'));
+      res
+        .status(200)
+        .send(['This is the list of our students', output].join('\n'));
     })
     .catch(() => {
       res.send('This is the list of our students\nCannot load the database');
