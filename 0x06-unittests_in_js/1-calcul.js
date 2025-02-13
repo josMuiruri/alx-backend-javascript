@@ -1,19 +1,19 @@
 const calculateNumber = (type, a, b) => {
-  const a_rounded = Math.round(a);
-  const b_rounded = Math.round(b);
+  const aRound = Math.round(a);
+  const bRound = Math.round(b);
 
-  if (type === 'SUM') {
-    return a_rounded + b_rounded;
-  }
   if (type === 'SUBTRACT') {
-    return a_rounded - b_rounded;
+    return aRound - bRound;
   }
+
   if (type === 'DIVIDE') {
-    if (b_rounded === 0) {
+    if (bRound === 0) {
       return 'Error';
     }
-    return a_rounded / a_rounded;
+    return aRound / bRound;
   }
+
+  return aRound + bRound;
 };
 
 module.exports = calculateNumber;
